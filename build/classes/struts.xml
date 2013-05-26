@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+
+    <constant name="struts.enable.DynamicMethodInvocation" value="false" />
+    <constant name="struts.devMode" value="false" />
+    
+    <package name="default" extends="struts-default" namespace="/">
+
+    <default-action-ref name="index" />
+        
+    <action name="index">
+        <result>index.jsp</result>
+    </action>
+    <action name="listAlbum" 
+    	class="com.tctalk.apps.mmgr.web.actions.MusicManagerAction" method="getAllAlbumList" >
+       	<result name="success">/WEB-INF/web/jsps/musicmgr.jsp</result>
+    </action>
+    
+    <action name="addAlbum" 
+    	class ="com.tctalk.apps.mmgr.web.actions.MusicManagerAction" method="addAlbumToCollection" >
+    	<result name="input">listAlbum</result>
+       	<result name="success" type="redirectAction">listAlbum</result>
+    </action>
+    
+    <action name="delAlbum" 
+    	class ="com.tctalk.apps.mmgr.web.actions.MusicManagerAction" method="delAlbumFromCollection" >
+       	<result name="success" type="redirectAction">listAlbum</result>
+    </action>
+    
+    </package>
+
+</struts>
